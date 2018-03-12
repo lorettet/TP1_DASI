@@ -5,7 +5,9 @@
  */
 package dao;
 
+import com.google.common.hash.Hashing;
 import entity.Client;
+import java.nio.charset.StandardCharsets;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -28,11 +30,12 @@ public class ClientDAO {
         em.persist(client);
     }
     
-    public Client getConnexion(String mail)
+    public Client getConnexion(String mail, String hash)
     {
         EntityManager em = JpaUtil.obtenirEntityManager();
-        Query q = em.createQuery("select c from Client c where c.mail = :mail");
+        Query q = em.createQuery("select c from Client c where c.mail = :mail and c.password = :pwd");
         q.setParameter("mail", mail);
+        q.setParameter("pwd", hash);
         try
         {
             return (Client) q.getSingleResult();

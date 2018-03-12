@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,6 +35,7 @@ public abstract class Medium implements Serializable {
     public Medium(String nom, String bio) {
         this.nom = nom;
         this.bio = bio;
+        employes = new ArrayList<Employe>();
     }
 
     public List<Employe> getEmployes() {

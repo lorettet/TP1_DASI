@@ -29,6 +29,22 @@ public class EmployeDAO {
         return em.find(Employe.class, id);
     }
     
+    public Employe getConnexion(String username, String password)
+    {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select e from Employe e where e.username = :usr and password = :pwd");
+        q.setParameter("usr", username);
+        q.setParameter("pwd", password);
+        try
+        {
+            return (Employe) q.getSingleResult();
+        }
+        catch(NoResultException e)
+        {
+            return null;
+        }
+    }
+    
     public List<Employe> getAllEmployes(){
          EntityManager em = JpaUtil.obtenirEntityManager();
         Query q = em.createQuery("select e from Employe e");

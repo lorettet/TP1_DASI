@@ -43,33 +43,12 @@ public class Main {
         JpaUtil.creerEntityManager();
         
         ClientService cs = new ClientService();
-        cs.CreerClient(new Client("theo", "theo", 'M', sdf.parse("12/12/1212"), "65445486", "ceciestunmail", "zegzg"));
-        cs.CreerClient(new Client("erg", "sg", 'F', sdf.parse("11/11/1111"), "65464", "ceciestunmail", "egerg"));
         
-        Employe emp = employeDAO.getSingleEmploye(101);
-        Voyance v = employeDAO.getVoyanceAttente(emp);
-        System.out.println(v);
+        Client c = new Client("emilie", "test", 'F', sdf.parse("20/12/1997"), "564654", "mailtest", "azerty", "erigbqg");
+
+        cs.CreerClient(c);
         
-        JpaUtil.ouvrirTransaction();
-        Medium m = mediumDAO.getMedium("test");
-        
-        for(Employe empp : m.getEmployes())
-            System.out.println(empp);
-        JpaUtil.validerTransaction();
-        
-        
-        EmployeService es = new EmployeService();
-        //es.lancerChat(v);
-        
-        List<Pair<Medium, Integer>> lm = es.getNbDemandesParMedium();
-        for (Pair<Medium, Integer> p : lm){
-            System.out.println(p);
-        }
-        
-        List<Pair<Employe, Integer>> le = es.getNbVoyancesRealiseesParEmploye();
-        for (Pair<Employe, Integer> p : le){
-            System.out.println(p);
-        }
+        System.out.println(cs.connect("mailtest", "azerty"));
         
         
         JpaUtil.fermerEntityManager();

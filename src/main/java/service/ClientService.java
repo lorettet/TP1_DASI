@@ -5,6 +5,7 @@
  */
 package service;
 
+import com.google.common.hash.Hashing;
 import dao.ClientDAO;
 import dao.EmployeDAO;
 import dao.JpaUtil;
@@ -14,6 +15,7 @@ import entity.Client;
 import entity.Employe;
 import entity.Medium;
 import entity.Voyance;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.persistence.RollbackException;
 import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
@@ -39,10 +41,11 @@ public class ClientService {
         mediumDAO = new MediumDAO();
     }
 
-    public Client connect(String mail)
+    public Client connect(String mail, String password)
     {
         JpaUtil.ouvrirTransaction();
-        Client client = clientDAO.getConnexion(mail);
+        password = Hashing.sha256().hashString(password,StandardCharsets.UTF_8).toString();
+        Client client = clientDAO.getConnexion(mail, password);
         JpaUtil.validerTransaction();
         return client;
     }

@@ -5,8 +5,10 @@
  */
 package entity;
 
+import com.google.common.hash.Hashing;
 import java.awt.Color;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +36,7 @@ public class Client implements Serializable {
     private String tel;
     @Column(unique=true)
     private String mail;
+    private String password;
     private String adresse;
     private Zodiaque signeZodiaque;
     private AstroChinois signeChinois;
@@ -42,7 +45,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String nom, String prenom, char civilite, Date dateNaissance, String tel, String mail, String adresse) {
+    public Client(String nom, String prenom, char civilite, Date dateNaissance, String tel, String mail, String password, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.civilite = civilite;
@@ -50,6 +53,7 @@ public class Client implements Serializable {
         this.tel = tel;
         this.mail = mail;
         this.adresse = adresse;
+        this.password = Hashing.sha256().hashString(password,StandardCharsets.UTF_8).toString();
     }
     
     
@@ -148,6 +152,14 @@ public class Client implements Serializable {
 
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     @Override

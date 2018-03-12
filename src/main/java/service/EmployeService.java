@@ -40,6 +40,14 @@ public class EmployeService {
         mediumDAO = new MediumDAO();
     }
     
+    public Employe connect(String username, String password)
+    {
+        JpaUtil.ouvrirTransaction();
+        Employe e = employeDAO.getConnexion(username, password);
+        JpaUtil.validerTransaction();
+        return e;
+    }
+    
     public void lancerChat(Voyance v){
         JpaUtil.ouvrirTransaction();
         Date date = new Date();

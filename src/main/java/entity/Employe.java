@@ -5,8 +5,9 @@
  */
 package entity;
 
+import com.google.common.hash.Hashing;
 import java.io.Serializable;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class Employe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String username;
+    private String password;
     private String nom;
     private String prenom;
     private boolean available;
@@ -30,9 +33,11 @@ public class Employe implements Serializable {
     public Employe() {
     }
 
-    public Employe(String nom, String prenom) {
+    public Employe(String nom, String prenom, String username, String password) {
         this.nom = nom;
         this.prenom = prenom;
+        this.username = username;
+        this.password = Hashing.sha256().hashString(password,StandardCharsets.UTF_8).toString();;
         this.available = true;
     }
 
@@ -70,6 +75,24 @@ public class Employe implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 
     @Override
     public int hashCode() {
