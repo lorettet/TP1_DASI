@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -29,10 +30,10 @@ public class Voyance implements Serializable {
     @OneToOne
     private Employe employe;
     @OneToOne
-    @Column(nullable=false)
+    @JoinColumn(nullable=false)
     private Medium medium;
     @OneToOne
-    @Column(nullable=false)
+    @JoinColumn(nullable=false)
     private Client client;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date heureDebut;

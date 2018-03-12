@@ -33,7 +33,7 @@ public class Employe implements Serializable {
     public Employe(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
-        this.available = false;
+        this.available = true;
     }
 
     public boolean isAvailable() {

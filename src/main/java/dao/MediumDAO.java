@@ -14,6 +14,10 @@ import javax.persistence.EntityManager;
  * @author tlorettefr
  */
 public class MediumDAO {
+
+    public MediumDAO() {
+       
+    }
     
     public void insertMedium(Medium m)
     {

@@ -7,22 +7,19 @@ package main;
 
 import dao.ClientDAO;
 import dao.EmployeDAO;
-import entity.Client;
 import dao.JpaUtil;
 import dao.MediumDAO;
 import dao.VoyanceDAO;
 import entity.Astrologue;
+import entity.Client;
 import entity.Employe;
 import entity.Medium;
-import entity.Tarologue;
 import entity.Voyance;
-import entity.Voyant;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import service.ClientService;
 
 /**
  *
@@ -34,6 +31,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException {
+        System.out.println("test");
         JpaUtil.init();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdfY = new SimpleDateFormat("yyyy");
@@ -44,13 +42,11 @@ public class Main {
 
         JpaUtil.creerEntityManager();
         
-        JpaUtil.ouvrirTransaction();
-
-        Voyance v = new Voyance(mediumDAO.getMedium("Toi"), clientDAO.getClient(51));
+        ClientService cs = new ClientService();
+        cs.CreerClient(new Client("theo", "theo", 'M', sdf.parse("12/12/1212"), "65445486", "ceciestunmail", "zegzg"));
+        cs.CreerClient(new Client("erg", "sg", 'F', sdf.parse("11/11/1111"), "65464", "ceciestunmail", "egerg"));
         
-        voyanceDAO.insertVoyance(v);
         
-        JpaUtil.validerTransaction();
         
         JpaUtil.fermerEntityManager();
         JpaUtil.destroy();

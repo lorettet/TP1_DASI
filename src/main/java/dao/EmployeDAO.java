@@ -38,4 +38,12 @@ public class EmployeDAO {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.merge(employe);
     }
+    
+    public int getNbVoyance(Employe emp)
+    {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select v from Voyance v where v.employe = :emp");
+        q.setParameter("emp", emp);
+        return q.getResultList().size();
+    }
 }
