@@ -51,7 +51,8 @@ public class Astrologue extends Medium implements Serializable {
 
     @Override
     public String toString() {
-        return "Astrologue{" + "ecole=" + ecole + ", promotion=" + promotion + " super=" + super.toString() + '}';
+        return super.toString() + "Talent: Tarologue\n" + "Ecole: " + ecole + "\nPromotion: " + promotion + "\n";
+
     }
     
     

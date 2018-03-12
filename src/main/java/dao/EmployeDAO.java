@@ -5,7 +5,9 @@
  */
 package dao;
 
+import entity.Client;
 import entity.Employe;
+import entity.Voyance;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -27,6 +29,12 @@ public class EmployeDAO {
         return em.find(Employe.class, id);
     }
     
+    public List<Employe> getAllEmployes(){
+         EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select e from Employe e");
+        return q.getResultList();
+    }
+    
     public List<Employe> getAvailableEmployes(){
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query q = em.createQuery("select e from Employe e where e.available = true");
@@ -45,5 +53,27 @@ public class EmployeDAO {
         Query q = em.createQuery("select v from Voyance v where v.employe = :emp");
         q.setParameter("emp", emp);
         return q.getResultList().size();
+    }
+    
+    public int getNbVoyancesRealisees(Employe emp)
+    {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select v from Voyance v where v.employe = :emp and v.heureFin is not null");
+        q.setParameter("emp", emp);
+        return q.getResultList().size();
+    }
+    
+    public Voyance getVoyanceAttente(Employe emp){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select v from Voyance v where v.employe = :emp and v.heureDebut = null");
+        q.setParameter("emp", emp);
+        try
+        {
+            return (Voyance) q.getSingleResult();
+        }
+        catch(NoResultException e)
+        {
+            return null;
+        }
     }
 }

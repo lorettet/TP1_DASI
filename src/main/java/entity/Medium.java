@@ -62,7 +62,7 @@ public abstract class Medium implements Serializable {
 
     @Override
     public String toString() {
-        return "nom=" + nom + ", bio=" + bio + ", employes=" + employes + '}';
+        return "Nom: " + nom + "\nBio: " + bio + "\n";
     }
 
     

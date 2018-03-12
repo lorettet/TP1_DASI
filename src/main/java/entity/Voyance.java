@@ -35,9 +35,9 @@ public class Voyance implements Serializable {
     @OneToOne
     @JoinColumn(nullable=false)
     private Client client;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date heureDebut;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date heureFin;
     private String commentaire;
 

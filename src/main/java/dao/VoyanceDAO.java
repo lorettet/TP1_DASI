@@ -6,6 +6,7 @@
 package dao;
 
 import entity.Client;
+import entity.Medium;
 import entity.Voyance;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -41,6 +42,19 @@ public class VoyanceDAO {
         Query q = em.createQuery("select v from Voyance v where v.client = :client");
         q.setParameter("client", c);
         return q.getResultList();
+    }
+    
+    public int getNbVoyancesMedium(Medium m){
+         EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select v from Voyance v where v.medium = :med");
+        q.setParameter("med", m);
+        return q.getResultList().size();
+    }
+    
+    public int getNbVoyances(){
+         EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("select v from Voyance v");
+        return q.getResultList().size();
     }
 
 }

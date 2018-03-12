@@ -39,7 +39,7 @@ public class Tarologue extends Medium implements Serializable {
 
     @Override
     public String toString() {
-        return "Tarologue{" + "cartes=" + cartes + " super="+ super.toString() + '}';
+        return super.toString() + "Talent: Tarologue\n" + "Cartes: " + cartes + "\n";
     }
     
    
