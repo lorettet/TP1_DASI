@@ -10,9 +10,11 @@ import entity.Employe;
 import entity.Medium;
 import entity.Tarologue;
 import entity.Voyant;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import static service.BDDTest.employes;
 
 /**
  *
@@ -38,10 +40,48 @@ public class BDDTest {
         employes.add(new Employe("Labrute", "Michael", "labrutem", "azerty18"));
         employes.add(new Employe("durant", "Thérèse", "durantt", "azerty19"));
         
-        mediums.add(new Voyant("Gwenaël", "Spécialiste des grandes conversation au-delà de TOUTES frontières.", "Boule de Cristal"));
-        mediums.add(new Voyant("J.Dalmarre", "Votre avenir est devant vous: regardons-le ensemble!", "Marc de Café"));
-        mediums.add(new Tarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes! Résultats rapides.", "Tarot de Marseille"));
-        mediums.add(new Tarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pout la région Bretagne répondront à toutes vos questions personnelles.", "Tarot de Brocéliande"));
-        mediums.add(new Astrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révlèlera votre avenir pour éclairer vvotre passé.", "École Normale Supérieure d'Astrologie (ENS-Astro)", sdf.parse("2006")));
+
+        
+        Medium m = new Voyant("Gwenaël", "Spécialiste des grandes conversation au-delà de TOUTES frontières.", "Boule de Cristal");
+        List<Employe> lemp = new ArrayList<>();
+        lemp.add(employes.get(0));
+        lemp.add(employes.get(1));
+        mediums.add(m);
+        
+        m = new Voyant("J.Dalmarre", "Votre avenir est devant vous: regardons-le ensemble!", "Marc de Café");
+        lemp = new ArrayList<>();
+        lemp.add(employes.get(2));
+        lemp.add(employes.get(3));
+        mediums.add(m);
+        
+        m = new Tarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes! Résultats rapides.", "Tarot de Marseille");
+        lemp = new ArrayList<>();
+        lemp.add(employes.get(4));
+        lemp.add(employes.get(5));
+        mediums.add(m);
+        
+        m = new Tarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pout la région Bretagne répondront à toutes vos questions personnelles.", "Tarot de Brocéliande");
+        lemp = new ArrayList<>();
+        lemp.add(employes.get(6));
+        lemp.add(employes.get(7));
+        mediums.add(m);
+        
+        try{
+        m = new Astrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révlèlera votre avenir pour éclairer vvotre passé.", "École Normale Supérieure d'Astrologie (ENS-Astro)", sdf.parse("2006"));
+        lemp = new ArrayList<>();
+        lemp.add(employes.get(0));
+        lemp.add(employes.get(1));
+        mediums.add(m);
+        
+        m = new Astrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu? N'attendez plus, demandez à me consulter!", "Institut des Nouveaux Savoirs Astrologiques", sdf.parse("2010"));
+        lemp = new ArrayList<>();
+        lemp.add(employes.get(2));
+        lemp.add(employes.get(3));
+        mediums.add(m);
+        }
+        catch(ParseException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

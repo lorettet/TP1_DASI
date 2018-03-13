@@ -10,8 +10,8 @@
     <class>entity.Astrologue</class>
     <class>entity.Voyance</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/dasi_positif"/>
-      <property name="javax.persistence.jdbc.user" value="tlorettefr"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/bdd_dasi_tlf"/>
+      <property name="javax.persistence.jdbc.user" value="lorettet"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="L4554551n"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
