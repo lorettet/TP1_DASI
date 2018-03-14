@@ -5,6 +5,7 @@
  */
 package service;
 
+import com.google.common.hash.Hashing;
 import dao.ClientDAO;
 import dao.EmployeDAO;
 import dao.JpaUtil;
@@ -15,6 +16,7 @@ import entity.Employe;
 import entity.Medium;
 import entity.Voyance;
 import static entity.Voyance_.heureDebut;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +45,7 @@ public class EmployeService {
     public Employe connect(String username, String password)
     {
         JpaUtil.ouvrirTransaction();
+        password = Hashing.sha256().hashString(password,StandardCharsets.UTF_8).toString();
         Employe e = employeDAO.getConnexion(username, password);
         JpaUtil.validerTransaction();
         return e;
@@ -76,7 +79,7 @@ public class EmployeService {
     
     public Voyance getCurrentVoyance(Employe emp){
         JpaUtil.ouvrirTransaction();
-        Voyance v = employeDAO.getVoyanceAttente(emp);
+        Voyance v = employeDAO.getCurrentVoyance(emp);
         JpaUtil.validerTransaction();
         return v;
     }
@@ -134,5 +137,19 @@ public class EmployeService {
         return res;
     }
     
+    public Employe getEmploye(int id)
+    {
+        JpaUtil.ouvrirTransaction();
+        Employe emp = employeDAO.getSingleEmploye(id);
+        JpaUtil.validerTransaction();
+        return emp;
+    }
     
+    public Voyance getVoyance(int id)
+    {
+        JpaUtil.ouvrirTransaction();
+        Voyance v = voyanceDAO.getVoyance(id);
+        JpaUtil.validerTransaction();
+        return v;
+    }
 }

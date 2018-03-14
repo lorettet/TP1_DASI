@@ -32,7 +32,7 @@ public class EmployeDAO {
     public Employe getConnexion(String username, String password)
     {
         EntityManager em = JpaUtil.obtenirEntityManager();
-        Query q = em.createQuery("select e from Employe e where e.username = :usr and password = :pwd");
+        Query q = em.createQuery("select e from Employe e where e.username = :usr and e.password = :pwd");
         q.setParameter("usr", username);
         q.setParameter("pwd", password);
         try
@@ -79,9 +79,9 @@ public class EmployeDAO {
         return q.getResultList().size();
     }
     
-    public Voyance getVoyanceAttente(Employe emp){
+    public Voyance getCurrentVoyance(Employe emp){
         EntityManager em = JpaUtil.obtenirEntityManager();
-        Query q = em.createQuery("select v from Voyance v where v.employe = :emp and v.heureDebut = null");
+        Query q = em.createQuery("select v from Voyance v where v.employe = :emp and v.heureFin = null");
         q.setParameter("emp", emp);
         try
         {

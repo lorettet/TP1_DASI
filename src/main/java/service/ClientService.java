@@ -58,15 +58,13 @@ public class ClientService {
             JpaUtil.validerTransaction();
         } catch (RollbackException e)
         {
-            log("Error : le mail existe déjà");
             JpaUtil.annulerTransaction();
             return false;
         }
-        log("Client créé. Envoie d'un mail de confirmation");
         return true;
     }
     
-    public Client getClientInfo(int id)
+    public Client getClient(int id)
     {
         JpaUtil.ouvrirTransaction();
         Client client = clientDAO.getClient(id);
@@ -104,7 +102,6 @@ public class ClientService {
         
         if(theEmploye == null)
         {
-            log("Aucun employé disponible");
             return false;   
         }
         
@@ -114,7 +111,6 @@ public class ClientService {
         theEmploye.setAvailable(false);
         employeDAO.modify(theEmploye);
         JpaUtil.validerTransaction();
-        log("Un employé a été attribué! Envoie d'une notification");
         return true;
     }
     
@@ -132,10 +128,5 @@ public class ClientService {
         List<Medium> lm = mediumDAO.getAllMedium();
         JpaUtil.validerTransaction();
         return lm;
-    }
-    
-    private void log(String str)
-    {
-        System.out.println("[ClientService] " + str);
     }
 }

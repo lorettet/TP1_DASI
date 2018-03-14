@@ -46,24 +46,28 @@ public class BDDTest {
         List<Employe> lemp = new ArrayList<>();
         lemp.add(employes.get(0));
         lemp.add(employes.get(1));
+        m.setEmployes(lemp);
         mediums.add(m);
         
         m = new Voyant("J.Dalmarre", "Votre avenir est devant vous: regardons-le ensemble!", "Marc de Café");
         lemp = new ArrayList<>();
         lemp.add(employes.get(2));
         lemp.add(employes.get(3));
+        m.setEmployes(lemp);
         mediums.add(m);
         
         m = new Tarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes! Résultats rapides.", "Tarot de Marseille");
         lemp = new ArrayList<>();
         lemp.add(employes.get(4));
         lemp.add(employes.get(5));
+        m.setEmployes(lemp);
         mediums.add(m);
         
         m = new Tarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pout la région Bretagne répondront à toutes vos questions personnelles.", "Tarot de Brocéliande");
         lemp = new ArrayList<>();
         lemp.add(employes.get(6));
         lemp.add(employes.get(7));
+        m.setEmployes(lemp);
         mediums.add(m);
         
         try{
@@ -71,12 +75,14 @@ public class BDDTest {
         lemp = new ArrayList<>();
         lemp.add(employes.get(0));
         lemp.add(employes.get(1));
+        m.setEmployes(lemp);
         mediums.add(m);
         
         m = new Astrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu? N'attendez plus, demandez à me consulter!", "Institut des Nouveaux Savoirs Astrologiques", sdf.parse("2010"));
         lemp = new ArrayList<>();
         lemp.add(employes.get(2));
         lemp.add(employes.get(3));
+        m.setEmployes(lemp);
         mediums.add(m);
         }
         catch(ParseException e)

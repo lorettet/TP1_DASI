@@ -103,10 +103,7 @@ public class Employe implements Serializable {
 
     @Override
     public String toString() {
-        return "Employe{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + '}';
+        return "Employe{" + "id=" + id + ", username=" + username + ", nom=" + nom + ", prenom=" + prenom + ", available=" + available + '}';
     }
-
-   
-
-    
+  
 }
