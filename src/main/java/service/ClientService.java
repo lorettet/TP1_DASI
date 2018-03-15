@@ -18,15 +18,12 @@ import entity.Voyance;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.persistence.RollbackException;
-import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
 
 /**
  *
  * @author tlorettefr
  */
 public class ClientService {
-
-    private final static int TIMEOUT = 60000;
     
     private final ClientDAO clientDAO;
     private final VoyanceDAO voyanceDAO;
@@ -62,14 +59,6 @@ public class ClientService {
             return false;
         }
         return true;
-    }
-    
-    public Client getClient(int id)
-    {
-        JpaUtil.ouvrirTransaction();
-        Client client = clientDAO.getClient(id);
-        JpaUtil.validerTransaction();
-        return client;
     }
     
     public boolean demanderVoyance(Medium medium, Client client)

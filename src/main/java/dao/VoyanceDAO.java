@@ -39,7 +39,7 @@ public class VoyanceDAO {
     public List<Voyance> getVoyancesClient(Client c)
     {
         EntityManager em = JpaUtil.obtenirEntityManager();
-        Query q = em.createQuery("select v from Voyance v where v.client = :client");
+        Query q = em.createQuery("select v from Voyance v where v.client = :client and v.heureFin is not null");
         q.setParameter("client", c);
         return q.getResultList();
     }

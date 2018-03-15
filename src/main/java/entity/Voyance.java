@@ -54,10 +54,6 @@ public class Voyance implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Date getHeureDebut() {
         return heureDebut;
     }
@@ -94,16 +90,8 @@ public class Voyance implements Serializable {
         return medium;
     }
 
-    public void setMedium(Medium medium) {
-        this.medium = medium;
-    }
-
     public Client getClient() {
         return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     @Override

@@ -5,9 +5,7 @@
  */
 package dao;
 
-import com.google.common.hash.Hashing;
 import entity.Client;
-import java.nio.charset.StandardCharsets;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;

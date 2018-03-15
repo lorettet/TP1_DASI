@@ -103,7 +103,7 @@ public class Main {
         
         System.out.println("=== L'employé dupont n'est plus disponible ===");
         Thread.sleep(TPS_ATTENTE);
-        emp = empS.getEmploye(emp.getId());
+        emp = empS.updateEmploye(emp);
         Main.testMsg("dupontl n'est plus disponible", "dupontl est toujours disponible", !emp.isAvailable(), emp);
         Thread.sleep(TPS_ATTENTE);
         
@@ -124,13 +124,13 @@ public class Main {
         System.out.println("=== dupont ferme la voyance en cour ===");
         Thread.sleep(TPS_ATTENTE);
         empS.terminerChat(v, "Tout va bien!");
-        v = empS.getVoyance(v.getId());
+        v = empS.updateVoyance(v);
         Main.testMsg("La voyance a bien été mise a jour", "La voyance n'a pas été mise à jour", v.getHeureFin() != null, v);
         Thread.sleep(TPS_ATTENTE);
         
         System.out.println("=== dupont est de nouveau disponible ===");
         Thread.sleep(TPS_ATTENTE);
-        emp = empS.getEmploye(emp.getId());
+        emp = empS.updateEmploye(emp);
         Main.testMsg("dupont est bien disponible", "dupontl reste indisponible", emp.isAvailable(), emp);
         Thread.sleep(TPS_ATTENTE);
         
@@ -139,6 +139,34 @@ public class Main {
         List<Voyance> lv = empS.getListVoyance(leClient);
         Main.testMsg("La liste est viable", "La liste est fausse", lv.size() == 1, lv.get(0));
         Thread.sleep(TPS_ATTENTE);
+        
+        System.out.println("=== Nombre de demandes par employé=== ");
+        Thread.sleep(TPS_ATTENTE);
+        List<Pair<Medium,Integer>> stats1 = empS.getNbDemandesParMedium();
+        for(Pair<Medium, Integer> p : stats1)
+        {
+            System.out.println(p.getKey().getNom() + " : " + p.getValue());
+        }
+        Thread.sleep(TPS_ATTENTE);
+        
+        System.out.println("=== Nombre de demandes par employé=== ");
+        Thread.sleep(TPS_ATTENTE);
+        List<Pair<Employe,Integer>> stats2 = empS.getNbVoyancesRealiseesParEmploye();
+        for(Pair<Employe, Integer> p : stats2)
+        {
+            System.out.println(p.getKey().getUsername()+ " : " + p.getValue());
+        }
+        Thread.sleep(TPS_ATTENTE);
+        
+        System.out.println("=== Répartition des demandes par employé=== ");
+        Thread.sleep(TPS_ATTENTE);
+        List<Pair<Employe,Integer>> stats3 = empS.getRepartitionVoyancesRealiseesParEmploye();
+        for(Pair<Employe, Integer> p : stats3)
+        {
+            System.out.println(p.getKey().getUsername()+ " : " + p.getValue() + "%");
+        }
+        Thread.sleep(TPS_ATTENTE);
+            
         
         JpaUtil.fermerEntityManager();
         JpaUtil.destroy();
