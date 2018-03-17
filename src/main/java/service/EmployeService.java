@@ -14,11 +14,14 @@ import entity.Client;
 import entity.Employe;
 import entity.Medium;
 import entity.Voyance;
+
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javafx.util.Pair;
+import util.AstroApi;
 
 /**
  *
@@ -182,7 +185,7 @@ public class EmployeService {
      * @param id l'id de l'employé
      * @return 
      */
-    private Employe getEmploye(int id)
+    public Employe getEmploye(int id)
     {
         JpaUtil.ouvrirTransaction();
         Employe emp = employeDAO.getSingleEmploye(id);
@@ -195,7 +198,7 @@ public class EmployeService {
      * @param id l'id de la voyance
      * @return 
      */
-    private Voyance getVoyance(int id)
+    public Voyance getVoyance(int id)
     {
         JpaUtil.ouvrirTransaction();
         Voyance v = voyanceDAO.getVoyance(id);
@@ -221,5 +224,15 @@ public class EmployeService {
     public Voyance updateVoyance(Voyance v)
     {
         return getVoyance(v.getId());
+    }
+    
+    public List<String> demanderPrediction(Client c, int amour, int sante, int travail)
+    {
+    	AstroApi astro = new AstroApi(AstroApi.MA_CLÉ_ASTRO_API);
+    	try {
+			return astro.getPredictions(c.getCouleur(), c.getAnimal(), amour, sante, travail);
+		} catch (IOException e) {
+			return null;
+		}
     }
 }

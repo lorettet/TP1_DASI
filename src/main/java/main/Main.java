@@ -121,6 +121,15 @@ public class Main {
         Main.testMsg("La voyance a bien été accepeté", "Erreur lors de l acceptation", v.getHeureDebut()!=null, v);
         Thread.sleep(TPS_ATTENTE);
         
+        System.out.println("=== dupont demande une prediction ===");
+        Thread.sleep(TPS_ATTENTE);
+        List<String> pred = empS.demanderPrediction(new Client("test","test",'M',new java.util.Date(),"014","tzetr","zsdfgz","zerzer"), 1, 3, 5);
+        for(String str : pred)
+        {
+        	System.out.println(str);
+        }
+        Thread.sleep(TPS_ATTENTE);
+
         System.out.println("=== dupont ferme la voyance en cour ===");
         Thread.sleep(TPS_ATTENTE);
         empS.terminerChat(v, "Tout va bien!");
@@ -166,7 +175,6 @@ public class Main {
             System.out.println(p.getKey().getUsername()+ " : " + p.getValue() + "%");
         }
         Thread.sleep(TPS_ATTENTE);
-            
         
         JpaUtil.fermerEntityManager();
         JpaUtil.destroy();
