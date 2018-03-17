@@ -42,8 +42,8 @@ public class EmployeService {
     
     /**
      * Renvoie l'employé qui veut se connecté
-     * @param username le username de l'employé
-     * @param password le mot de passe de l'employé
+     * @param username 
+     * @param password 
      * @return l'employé conncté ou null si les informations ne sont pas correctes
      */
     public Employe connect(String username, String password)
@@ -57,7 +57,7 @@ public class EmployeService {
     
     /**
      * Lance le chat. Rentre la date de début dans las voyance.
-     * @param v la voyance à commencer.
+     * @param v 
      */
     public void lancerChat(Voyance v){
         JpaUtil.ouvrirTransaction();
@@ -69,7 +69,7 @@ public class EmployeService {
  
     /**
      * Termine le chat, rentre une heure de fin dans la voyance.
-     * @param v la voyance à terminer.
+     * @param v 
      */
     public void terminerChat(Voyance v){
         JpaUtil.ouvrirTransaction();
@@ -86,8 +86,8 @@ public class EmployeService {
     
     /**
      * Termine le chat. Rentre une heure de fin et ajoute un commentaire.
-     * @param v la voyance à terminer.
-     * @param commentaire le commentaire à ajouter.
+     * @param v
+     * @param commentaire
      */
     public void terminerChat(Voyance v, String commentaire){
         v.setCommentaire(commentaire);
@@ -97,7 +97,7 @@ public class EmployeService {
     /**
      * Renvoie la voyance sur laquel travaille (déjà en cour) ou doit travaillé 
      * (pas encore en cour) l'employé.
-     * @param emp l'employé en question
+     * @param
      * @return La voyance ou null si aucune voyance n'est attribué.
      */
     public Voyance getCurrentVoyance(Employe emp){
@@ -109,7 +109,7 @@ public class EmployeService {
     
     /**
      * Renvoie l'historique des voyances d'un client
-     * @param c le client 
+     * @param c
      * @return la liste des voyances
      */
      public List<Voyance> getListVoyance(Client c)
@@ -182,7 +182,7 @@ public class EmployeService {
     
     /**
      * Renvoie l'employé en fonction de son id
-     * @param id l'id de l'employé
+     * @param id
      * @return 
      */
     public Employe getEmploye(int id)
@@ -195,7 +195,7 @@ public class EmployeService {
     
     /**
      * Renvoie la voyance en fonction de son id
-     * @param id l'id de la voyance
+     * @param id
      * @return 
      */
     public Voyance getVoyance(int id)
@@ -208,7 +208,7 @@ public class EmployeService {
     
     /**
      * Met à jour un employé en fonction des données de la base
-     * @param emp l'employé à mettre a jour
+     * @param emp
      * @return l'employé mis à jour
      */
     public Employe updateEmploye(Employe emp)
@@ -218,7 +218,7 @@ public class EmployeService {
     
      /**
      * Met à jour une voyance en fonction des données de la base
-     * @param emp la voyance à mettre a jour
+     * @param emp
      * @return la voyance mise à jour
      */
     public Voyance updateVoyance(Voyance v)
@@ -226,6 +226,14 @@ public class EmployeService {
         return getVoyance(v.getId());
     }
     
+    /**
+     * Demander une prediction
+     * @param c
+     * @param amour
+     * @param sante
+     * @param travail
+     * @return
+     */
     public List<String> demanderPrediction(Client c, int amour, int sante, int travail)
     {
     	AstroApi astro = new AstroApi(AstroApi.MA_CLÉ_ASTRO_API);

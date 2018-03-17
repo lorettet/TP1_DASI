@@ -38,6 +38,12 @@ public class ClientService {
         mediumDAO = new MediumDAO();
     }
 
+    /**
+     * Connecte un client
+     * @param mail
+     * @param password 
+     * @return le client connecté, ou null si la connexion à échoué
+     */
     public Client connect(String mail, String password)
     {
         JpaUtil.ouvrirTransaction();
@@ -47,6 +53,11 @@ public class ClientService {
         return client;
     }
     
+    /**
+     * Ajoute un nouveau client dans la base de donnée
+     * @param client
+     * @return true si le client à bien été ajouté, false si une erreur s'est produite.
+     */
     public boolean CreerClient(Client client)
     {
         JpaUtil.ouvrirTransaction();
@@ -61,6 +72,12 @@ public class ClientService {
         return true;
     }
     
+    /**
+     * Demande une voyance. Le client à selectionné un médium et demande une voyance.
+     * @param medium
+     * @param client
+     * @return true si un employé a été assigné, false si personne n'a été trouvé
+     */
     public boolean demanderVoyance(Medium medium, Client client)
     {
         JpaUtil.ouvrirTransaction();
@@ -103,6 +120,11 @@ public class ClientService {
         return true;
     }
     
+    /**
+     * Renvoie la liste des voyances terminé pour un client donnée
+     * @param c
+     * @return la liste des voyance terminé
+     */
     public List<Voyance> getListVoyance(Client c)
     {
         JpaUtil.ouvrirTransaction();
@@ -111,6 +133,10 @@ public class ClientService {
         return lv;
     }
     
+    /**
+     * Renvoie la liste de tous les mediums
+     * @return la liste des mediums
+     */
     public List<Medium> getAllMedium()
     {
         JpaUtil.ouvrirTransaction();
