@@ -17,6 +17,9 @@ import entity.Medium;
  */
 public class InitService {
     
+	/**
+	 * Initialise la base de données avec des mediums et des employés
+	 */
     public void init()
     {
         createEmployes();

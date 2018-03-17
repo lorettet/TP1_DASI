@@ -23,9 +23,9 @@ import static service.BDDTest.employes;
 public class BDDTest {
     
     
-    public final static List<Employe> employes = new ArrayList<Employe>();
+    protected final static List<Employe> employes = new ArrayList<Employe>();
     
-    public final static List<Medium> mediums = new ArrayList<Medium>();
+    protected final static List<Medium> mediums = new ArrayList<Medium>();
     
     static
     {
