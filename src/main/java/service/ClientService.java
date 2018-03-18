@@ -40,8 +40,8 @@ public class ClientService {
 
     /**
      * Connecte un client
-     * @param mail
-     * @param password 
+     * @param mail le mail du client
+     * @param password son mot de passe
      * @return le client connecté, ou null si la connexion à échoué
      */
     public Client connect(String mail, String password)
@@ -54,8 +54,8 @@ public class ClientService {
     }
     
     /**
-     * Ajoute un nouveau client dans la base de donnée
-     * @param client
+     * Ajoute un nouveau client dans la base de données
+     * @param client le client
      * @return true si le client à bien été ajouté, false si une erreur s'est produite.
      */
     public boolean CreerClient(Client client)
@@ -73,9 +73,26 @@ public class ClientService {
     }
     
     /**
+     * Écrit un mail de confirmation ou d'infirmation d'inscription.
+     * @param client le client
+     * @param success true si le client a bien été inscrit à positif
+     * @return le mail à envoyer
+     */
+    public String mailInscription(Client client, boolean success){
+        String res = "Expediteur: contact@posit.if\n" + "Pour: " + client.getMail() + "\nSujet: Bienvenue chez POSIT'IF\n\nBonjour " + client.getPrenom()+",\n";
+        
+        if(success){
+            res += "Nous vous confirmons votre inscription au service POSIT'IF. Votre numéro de client est: " + client.getClientId()+"\n";
+        }else{
+            res += "Votre inscription au service POSIT'IF a malencontreusement échoué... Merci de recommencer ultérieurement.\n";
+        }
+        return res;
+    }
+    
+    /**
      * Demande une voyance. Le client à selectionné un médium et demande une voyance.
-     * @param medium
-     * @param client
+     * @param medium le medium
+     * @param client le client
      * @return true si un employé a été assigné, false si personne n'a été trouvé
      */
     public boolean demanderVoyance(Medium medium, Client client)
@@ -121,9 +138,9 @@ public class ClientService {
     }
     
     /**
-     * Renvoie la liste des voyances terminé pour un client donnée
-     * @param c
-     * @return la liste des voyance terminé
+     * Renvoie la liste des voyances terminées pour un client donnée
+     * @param c le client
+     * @return la liste des voyance terminées
      */
     public List<Voyance> getListVoyance(Client c)
     {

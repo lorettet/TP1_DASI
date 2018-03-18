@@ -41,10 +41,10 @@ public class EmployeService {
     }
     
     /**
-     * Renvoie l'employé qui veut se connecté
-     * @param username 
-     * @param password 
-     * @return l'employé conncté ou null si les informations ne sont pas correctes
+     * Renvoie l'employé qui veut se connecter
+     * @param username nom d'utilisateur de l'employé
+     * @param password son mot de passe
+     * @return l'employé connecté ou null si les informations ne sont pas correctes
      */
     public Employe connect(String username, String password)
     {
@@ -56,8 +56,9 @@ public class EmployeService {
     }
     
     /**
-     * Lance le chat. Rentre la date de début dans las voyance.
-     * @param v 
+     * Lance le chat. Rentre l'heure de début dans la voyance.
+     * La voyance doit exister dans la base
+     * @param v la voyance
      */
     public void lancerChat(Voyance v){
         JpaUtil.ouvrirTransaction();
@@ -68,8 +69,9 @@ public class EmployeService {
     }
  
     /**
-     * Termine le chat, rentre une heure de fin dans la voyance.
-     * @param v 
+     * Termine le chat. Rentre une heure de fin dans la voyance.
+     * La voyance doit exister dans la base
+     * @param v la voyance
      */
     public void terminerChat(Voyance v){
         JpaUtil.ouvrirTransaction();
@@ -86,8 +88,9 @@ public class EmployeService {
     
     /**
      * Termine le chat. Rentre une heure de fin et ajoute un commentaire.
-     * @param v
-     * @param commentaire
+     * La voyance doit exister dans la base
+     * @param v la voyance
+     * @param commentaire le commentaire pour la voyance
      */
     public void terminerChat(Voyance v, String commentaire){
         v.setCommentaire(commentaire);
@@ -95,10 +98,10 @@ public class EmployeService {
     }
     
     /**
-     * Renvoie la voyance sur laquel travaille (déjà en cour) ou doit travaillé 
-     * (pas encore en cour) l'employé.
-     * @param
-     * @return La voyance ou null si aucune voyance n'est attribué.
+     * Renvoie la voyance sur laquelle travaille (déjà en cours) ou doit 
+     * travailler (pas encore en cours) l'employé.
+     * @param emp l'employé
+     * @return La voyance ou null si aucune voyance n'est attribuée.
      */
     public Voyance getCurrentVoyance(Employe emp){
         JpaUtil.ouvrirTransaction();
@@ -109,7 +112,7 @@ public class EmployeService {
     
     /**
      * Renvoie l'historique des voyances d'un client
-     * @param c
+     * @param c le client
      * @return la liste des voyances
      */
      public List<Voyance> getListVoyance(Client c)
@@ -121,7 +124,7 @@ public class EmployeService {
     }
      
      /**
-      * Premier diagramme : renvoie une liste de couple Medium/entier 
+      * Premier diagramme : renvoie une liste de couples Medium/entier 
       * correspondant au nombre de demandes par medium.
       * @return 
       */
@@ -141,7 +144,7 @@ public class EmployeService {
     }
     
     /**
-     * Deuxième diagramme : renvoie une liste de couple Employe/entier 
+     * Deuxième diagramme : renvoie une liste de couples Employe/entier 
      * correspondant au nombre de voyances terminées par Employé. 
      * @return 
      */
@@ -160,7 +163,7 @@ public class EmployeService {
     }
     
     /**
-     * Troisème diagramme : renvoie une liste de couple Employe/entier 
+     * Troisème diagramme : renvoie une liste de couples Employe/entier 
      * correspondant à la répartition (%) des voyances terminées par Employé. 
      * @return 
      */
@@ -182,8 +185,8 @@ public class EmployeService {
     
     /**
      * Renvoie l'employé en fonction de son id
-     * @param id
-     * @return 
+     * @param id l'identifiant de l'employé
+     * @return l'employé ou null s'il ne figure pas dans la base
      */
     public Employe getEmploye(int id)
     {
@@ -195,8 +198,8 @@ public class EmployeService {
     
     /**
      * Renvoie la voyance en fonction de son id
-     * @param id
-     * @return 
+     * @param id l'identifiant de la voyance
+     * @return la voyance ou null si elle ne figure pas dans la base
      */
     public Voyance getVoyance(int id)
     {
@@ -208,7 +211,8 @@ public class EmployeService {
     
     /**
      * Met à jour un employé en fonction des données de la base
-     * @param emp
+     * L'employé doit exister dans la base
+     * @param emp l'employé
      * @return l'employé mis à jour
      */
     public Employe updateEmploye(Employe emp)
@@ -218,7 +222,7 @@ public class EmployeService {
     
      /**
      * Met à jour une voyance en fonction des données de la base
-     * @param emp
+     * @param v la voyance
      * @return la voyance mise à jour
      */
     public Voyance updateVoyance(Voyance v)
@@ -227,12 +231,13 @@ public class EmployeService {
     }
     
     /**
-     * Demander une prediction
-     * @param c
-     * @param amour
-     * @param sante
-     * @param travail
-     * @return
+     * Demander une prediction à partir d'un profil astrologique et de 3 notes
+     * pour l'amour, la santé et le travail
+     * @param c le client
+     * @param amour la note pour l'amour
+     * @param sante la note pour la santé
+     * @param travail la note pour le travail
+     * @return la prediction
      */
     public List<String> demanderPrediction(Client c, int amour, int sante, int travail)
     {
